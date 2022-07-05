@@ -1,0 +1,55 @@
+import random
+
+CHOICES = 'rock' 'paper' 'scissors'
+
+
+def p1_choice():
+    """Get user input and validate it is one of the choices above"""
+    my_choice = None
+    while my_choice is None:
+        my_choice = input('Choices: \nRock \nPaper \nScissors \n\nPick: ')
+        if my_choice.lower() not in CHOICES:
+            my_choice = None
+    return my_choice.lower()
+
+
+def p2_choice():
+    """Have the computer pick one of the valid choices at random"""
+    their_choice = random.randint(0, 2)
+    their_choice = CHOICES[their_choice]
+    return their_choice
+
+
+def is_draw(my_choice, their_choice):
+    """Check if game was a draw"""
+    if my_choice == their_choice:
+        return True
+
+
+def print_winner(my_choice, their_choice):
+    """Check to see who won"""
+    if my_choice == 'rock' and their_choice == 'scissors':
+        print('Player wins!')
+    elif my_choice == 'scissors' and their_choice == 'paper':
+        print('Player wins!')
+    elif my_choice == 'paper' and their_choice == 'rock':
+        print('Player wins!')
+    else:
+        print('Computer wins!')
+        print('%s beats %s' % (my_choice, their_choice))
+
+
+def play_game():
+    """play the game"""
+    my_choice = p1_choice()
+    their_choice = p2_choice()
+    if is_draw(my_choice, their_choice):
+        print("It's a draw, both players picked %s: " % my_choice)
+    else:
+        print("Computer picked: %s" % their_choice)
+        print("Player picked: %s" % my_choice)
+        print_winner(my_choice, their_choice)
+
+
+if __name__ == "__main__":
+    play_game()
